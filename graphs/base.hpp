@@ -7,7 +7,7 @@
 
 namespace cp_algo::graph {
   using edge_index = int; 
-  enum type {directed = 0, undirected = 1} 
+  enum type {directed = 0, undirected = 1};
   template<type _undirected, edge_type edge_t = edge_base>
     struct graph {
       static constexpr bool undirected = _undirected;
@@ -47,15 +47,21 @@ namespace cp_algo::graph {
         return std::views::iota(0, n());
       }
 
+      template<typename V>
+      auto every_second(V v) {
+          return v | std::views::filter([i = 0](auto) mutable {return (i++ % 2) == 0;});
+      }
+
+
       auto edges_view() const {
-        return std::views::iota(0, 2 * m()) | std::views::stride(2);
+        return every_second(std::views::iota(0, 2 * m()));
       }
 
       auto const& incidence_lists() const {return adj;}
       edge_t const& edge(edge_index e) const {return edges[e];}
       node_index n() const {return (node_index) adj.size();}
       edge_index m() const {return (edge_index) size(edges) / 2;}
-    private:
+      private:
       node_index v0;
       std::vector<edge_t> edges;
       structures::stack_union<edge_index> adj;

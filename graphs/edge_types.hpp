@@ -2,7 +2,7 @@
 #define CP_ALGO_GRAPH_EDGE_TYPES_HPP
 #include <iostream>
 #include <cstdint> 
-namespace cp::graph {
+namespace cp_algo::graph {
   using node_index = int;
   struct edge_base {
     node_index to;
