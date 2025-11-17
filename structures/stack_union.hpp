@@ -2,7 +2,7 @@
 #define CP_ALGO_STRUCTURES_STACK_UNION_HPP
 #include <cstddef>
 #include <vector>
-namespace cp::structures {
+namespace cp_algo::structures {
   template<class datatype>
   struct stack_union {
     stack_union(int n = 0) : head(n), next(1), data(1) {}
