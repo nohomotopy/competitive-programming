@@ -35,7 +35,7 @@ namespace cp_algo::graph {
       }
 
       void call_adjacent(node_index v, auto &&callback) const {
-        call_adj(v, callback, [](){return false;});
+        call_adjacent(v, callback, [](){return false;});
       }
 
       void call_edges(auto &&callback) const {
@@ -48,7 +48,7 @@ namespace cp_algo::graph {
       }
 
       template<typename V>
-      auto every_second(V v) {
+      auto every_second(V v) const {
           return v | std::views::filter([i = 0](auto) mutable {return (i++ % 2) == 0;});
       }
 
